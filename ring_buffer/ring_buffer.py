@@ -10,25 +10,26 @@ class RingBuffer:
     def append(self, item):
         # if capacity not full
         if len(self.storage) < self.capacity:
-            # add item to tail
+            # add item to tail i.e. most recently added
             self.storage.add_to_tail(item)
-            # set pointer to tail/most recent
+            # set pointer to tail
             self.current = self.storage.tail
         # if capacity is full
         if len(self.storage) == self.capacity:
+            # add item to tail
             self.current.value = item
-            # remove from head
             if self.current is self.storage.tail:
+                # move pointer to head
                 self.current = self.storage.head
             else:
                 self.current = self.current.next
-            # add item to tail
 
     def get(self):
         # Note:  This is the only [] allowed
         list_buffer_contents = []
 
         # TODO: Your code here
+        # add values from storage to list_buffer_contents
         list_item = self.storage.head
         while list_item:
             if list_item.value == None:
